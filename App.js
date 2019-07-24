@@ -1,21 +1,22 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 
-import Root from './src/Root';
+import MainStack from './src/navigation/MainStack';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const loadFonts = Font.loadAsync({
+  Roboto: require('native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+  ...Ionicons.font,
 });
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Root />
-    </View>
-  );
+  const [isReady, setIsReady] = React.useState(false);
+
+  React.useEffect(() => {
+    loadFonts.then(() => setIsReady(true));
+  }, []);
+
+  return isReady ? <MainStack /> : <AppLoading />;
 }
