@@ -1,33 +1,28 @@
-type Order {
-    id: ID!,
-    createdAt: Date,
-    updatedAt: Date,
-    name: String,
-    description: String,
-    from: String,
-    to: String,
-    deliverBy: Date,
-    status: OrderStatus,
-    imageUrl: String,
+type Mutation {
+    addUser(newUserData: NewUserInput!): User!
+    removeUser(id: String!): Boolean!
 }
 
-type User {
-    id: ID!,
-    createdAt: Date,
-    updatedAt: Date,
-    firstName: String,
-    secondName: String
-}
-
-enum OrderStatus {
-    CREATED,
-    ACCEPTED,
-    COMPLETED,
-    CANCELED,
+input NewUserInput {
+    firstName: String!
+    lastName: String!
 }
 
 type Query {
-    Orders(limit: Int): [Order],
+    user(id: String!): User!
+    users(skip: Int = 0, take: Int = 25): [User!]!
+}
+
+type Subscription {
+    userAdded: User!
+}
+
+type User {
+    id: ID!
+    createdAt: Date!
+    updatedAt: Date!
+    firstName: String!
+    lastName: String!
 }
 
 scalar Date
