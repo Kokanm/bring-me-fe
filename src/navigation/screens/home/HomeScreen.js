@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button, Text, Icon } from 'native-base';
 import styled from 'styled-components/native';
-import {graphql, QueryRenderer} from "react-relay";
-import environment from "../../../relay/environment";
+import { graphql, QueryRenderer } from 'react-relay';
+import environment from '../../../relay/environment';
 import type { RootQueryResponse } from './__generated__/RootQuery.graphql';
 
 type Props = {
-    +error: {
-        +message: String,
-    },
-    +props: RootQueryResponse,
+  +error: {
+    +message: String,
+  },
+  +props: RootQueryResponse,
 };
 
 const Root = styled.View`
@@ -36,13 +36,13 @@ const renderInner = (data: Props) => {
       </Button>
     </Root>
   );
-}
+};
 
 export default function HomeScreen() {
-    return (
-        <QueryRenderer
-            environment={environment}
-            query={graphql`
+  return (
+    <QueryRenderer
+      environment={environment}
+      query={graphql`
         query HomeScreenQuery {
           users {
             id
@@ -50,7 +50,7 @@ export default function HomeScreen() {
           }
         }
       `}
-            render={renderInner}
-        />
-    );
+      render={renderInner}
+    />
+  );
 }
