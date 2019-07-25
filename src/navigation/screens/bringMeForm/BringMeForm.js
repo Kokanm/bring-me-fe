@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { View, Form, Item, Input, Textarea, DatePicker } from 'native-base';
 
-const AddOrderButton = styled.Button`
+const AddDeliveryButton = styled.Button`
   align-self: center;
 `;
 
@@ -38,7 +38,7 @@ export default function BringMeForm() {
           </Item>
         </Form>
       </View>
-      <AddOrderButton title="Add order" />
+      <AddDeliveryButton title="Add delivery" />
     </View>
   );
 }

@@ -13,7 +13,7 @@ const mutation = graphql`
   }
 `;
 
-export default function addUser(newUserData: NewUserInput) {
+export const addUser = (newUserData: NewUserInput) => {
   const variables = {
     newUserData: {
       ...newUserData,
@@ -33,4 +33,4 @@ export default function addUser(newUserData: NewUserInput) {
       console.error(err);
     },
   });
-}
+};

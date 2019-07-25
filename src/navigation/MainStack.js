@@ -1,6 +1,6 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './screens/home/HomeScreen';
-import OrderDetails from './screens/orderDetails/OrderDetails';
+import DeliveryDetails from './screens/deliveryDetails/DeliveryDetails';
 import BringMeForm from './screens/bringMeForm/BringMeForm';
 import IWantToBringForm from './screens/IWantToBringForm/iWantToBringForm';
 
@@ -12,8 +12,8 @@ const MainStack = createStackNavigator(
         title: 'Bring Me',
       },
     },
-    OrderDetails: {
-      screen: OrderDetails,
+    DeliveryDetails: {
+      screen: DeliveryDetails,
       navigationOptions: {
         title: 'Details',
       },
