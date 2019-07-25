@@ -8,15 +8,13 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type DeliveryListItem_delivery$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type DeliveriesList_deliveries$ref: FragmentReference;
 declare export opaque type DeliveriesList_deliveries$fragmentType: DeliveriesList_deliveries$ref;
 export type DeliveriesList_deliveries = {|
   +deliveries: $ReadOnlyArray<{|
-    +id: string,
-    +item: string,
-    +imageURL: ?string,
-    +locationFrom: ?string,
+    +$fragmentRefs: DeliveryListItem_delivery$ref
   |}>,
   +$refType: DeliveriesList_deliveries$ref,
 |};
@@ -45,37 +43,14 @@ const node/*: ReaderFragment*/ = {
       "plural": true,
       "selections": [
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "id",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "item",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "imageURL",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "locationFrom",
-          "args": null,
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "DeliveryListItem_delivery",
+          "args": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '3bfa2e35dfb74dd603a272c95282812c';
+(node/*: any*/).hash = '686c7259230e3d88a451773013d2e5c4';
 module.exports = node;
