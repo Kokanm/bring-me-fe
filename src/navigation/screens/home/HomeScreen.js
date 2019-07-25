@@ -3,30 +3,36 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { graphql, QueryRenderer } from 'react-relay';
+import { Text } from 'react-native';
 import environment from '../../../relay/environment';
-import type { RootQueryResponse } from './__generated__/RootQuery.graphql';
+import type { HomeScreenQueryResponse } from './__generated__/HomeScreenQuery.graphql';
 import FloatingActions from './components/FloatingActions';
-import OrdersList from './components/OrdersList';
+import DeliveriesList from './components/DeliveriesList';
 
 type Props = {
-  +error: {
-    +message: String,
+  error: {
+    message: String,
   },
-  +props: RootQueryResponse,
+  props: HomeScreenQueryResponse,
 };
 
 const Root = styled.View`
   flex: 1;
 `;
 
-// eslint-disable-next-line no-unused-vars
-const renderInner = (data: Props) => {
-  return (
-    <Root>
-      <OrdersList />
-      <FloatingActions />
-    </Root>
-  );
+const renderInner = ({ error, props }: Props) => {
+  if (error) {
+    return <Text>{error.message}</Text>;
+  }
+  if (props) {
+    return (
+      <Root>
+        <DeliveriesList deliveries={props} />
+        <FloatingActions />
+      </Root>
+    );
+  }
+  return <Text>Loading</Text>;
 };
 
 export default function HomeScreen() {
@@ -35,13 +41,7 @@ export default function HomeScreen() {
       environment={environment}
       query={graphql`
         query HomeScreenQuery {
-          users {
-            id
-            firstName
-          }
-          deliveries {
-            item
-          }
+          ...DeliveriesList_deliveries
         }
       `}
       render={renderInner}

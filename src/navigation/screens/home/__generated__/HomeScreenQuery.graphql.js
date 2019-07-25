@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash eed9022f38f5f149f4346acc9ae17aee
+ * @relayHash dc92969efafb6d6dd375a74e654ec6ef
  */
 
 /* eslint-disable */
@@ -9,15 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type DeliveriesList_deliveries$ref = any;
 export type HomeScreenQueryVariables = {||};
 export type HomeScreenQueryResponse = {|
-  +users: $ReadOnlyArray<{|
-    +id: string,
-    +firstName: string,
-  |}>,
-  +deliveries: $ReadOnlyArray<{|
-    +item: string
-  |}>,
+  +$fragmentRefs: DeliveriesList_deliveries$ref
 |};
 export type HomeScreenQuery = {|
   variables: HomeScreenQueryVariables,
@@ -28,52 +23,20 @@ export type HomeScreenQuery = {|
 
 /*
 query HomeScreenQuery {
-  users {
-    id
-    firstName
-  }
+  ...DeliveriesList_deliveries
+}
+
+fragment DeliveriesList_deliveries on Query {
   deliveries {
-    item
     id
+    item
+    imageURL
+    locationFrom
   }
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v1 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "users",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "User",
-  "plural": true,
-  "selections": [
-    (v0/*: any*/),
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "firstName",
-      "args": null,
-      "storageKey": null
-    }
-  ]
-},
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "item",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node/*: ConcreteRequest*/ = {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
@@ -82,18 +45,10 @@ return {
     "metadata": null,
     "argumentDefinitions": [],
     "selections": [
-      (v1/*: any*/),
       {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "deliveries",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Delivery",
-        "plural": true,
-        "selections": [
-          (v2/*: any*/)
-        ]
+        "kind": "FragmentSpread",
+        "name": "DeliveriesList_deliveries",
+        "args": null
       }
     ]
   },
@@ -102,7 +57,6 @@ return {
     "name": "HomeScreenQuery",
     "argumentDefinitions": [],
     "selections": [
-      (v1/*: any*/),
       {
         "kind": "LinkedField",
         "alias": null,
@@ -112,8 +66,34 @@ return {
         "concreteType": "Delivery",
         "plural": true,
         "selections": [
-          (v2/*: any*/),
-          (v0/*: any*/)
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "item",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "imageURL",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "locationFrom",
+            "args": null,
+            "storageKey": null
+          }
         ]
       }
     ]
@@ -122,11 +102,10 @@ return {
     "operationKind": "query",
     "name": "HomeScreenQuery",
     "id": null,
-    "text": "query HomeScreenQuery {\n  users {\n    id\n    firstName\n  }\n  deliveries {\n    item\n    id\n  }\n}\n",
+    "text": "query HomeScreenQuery {\n  ...DeliveriesList_deliveries\n}\n\nfragment DeliveriesList_deliveries on Query {\n  deliveries {\n    id\n    item\n    imageURL\n    locationFrom\n  }\n}\n",
     "metadata": {}
   }
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = 'c6a6b996a6c7d6b1d6b6b2dd1394482e';
+(node/*: any*/).hash = '40be330933cf7d4fb1db7bbda99fed72';
 module.exports = node;

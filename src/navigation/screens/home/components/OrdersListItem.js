@@ -7,9 +7,9 @@ const Root = styled.View`
   justify-content: center;
 `;
 
-export default function OrderListItem({ title }) {
+export default function OrderListItem({ title, id }) {
   return (
-    <Root>
+    <Root key={id}>
       <Text>{`List Item ${title}`}</Text>
     </Root>
   );
