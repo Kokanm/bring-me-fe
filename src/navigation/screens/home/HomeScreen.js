@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import styled from 'styled-components/native';
 import { graphql, QueryRenderer } from 'react-relay';
@@ -37,6 +39,9 @@ export default function HomeScreen() {
           users {
             id
             firstName
+          }
+          deliveries {
+            item
           }
         }
       `}
