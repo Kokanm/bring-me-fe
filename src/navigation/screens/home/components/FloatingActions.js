@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
+import { Alert } from 'react-native';
 import { FloatingAction as RNFloatingActions } from 'react-native-floating-action';
 import { Text } from 'native-base';
 
@@ -24,7 +25,7 @@ export default function FloatingAction() {
       distanceToEdge={30}
       actions={actions}
       onPressItem={name => {
-        console.log(`selected button: ${name}`);
+        Alert.alert('Title', `selected button: ${name}`);
       }}
     />
   );
