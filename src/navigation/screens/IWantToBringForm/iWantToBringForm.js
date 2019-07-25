@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, Form, Item, Input, Textarea, DatePicker } from 'native-base';
+import { View, Form, Item, Input, DatePicker } from 'native-base';
 
 const AddOrderButton = styled.Button`
   align-self: center;
 `;
 
-export default function BringMeForm() {
+export default function IWantToBringForm() {
   return (
     <View>
       <View>
@@ -31,14 +31,11 @@ export default function BringMeForm() {
             />
           </Item>
           <Item>
-            <Textarea placeholder="What" />
-          </Item>
-          <Item last>
-            <Textarea placeholder="Description" />
+            <Input keyboardType="number-pad" placeholder="Free space in the luggage (kg)" />
           </Item>
         </Form>
       </View>
-      <AddOrderButton title="Add order" />
+      <AddOrderButton title="Add suggestion" />
     </View>
   );
 }

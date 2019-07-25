@@ -2,6 +2,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './screens/home/HomeScreen';
 import OrderDetails from './screens/orderDetails/OrderDetails';
 import BringMeForm from './screens/bringMeForm/BringMeForm';
+import IWantToBringForm from './screens/IWantToBringForm/iWantToBringForm';
 
 const MainStack = createStackNavigator(
   {
@@ -19,6 +20,12 @@ const MainStack = createStackNavigator(
     },
     BringMeForm: {
       screen: BringMeForm,
+    },
+    IWantToBringForm: {
+      screen: IWantToBringForm,
+      navigationOptions: {
+        title: 'I want to bring',
+      },
     },
   },
   {

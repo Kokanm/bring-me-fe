@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
-import { Alert } from 'react-native';
 import { FloatingAction as RNFloatingActions } from 'react-native-floating-action';
 import { Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
@@ -14,7 +13,7 @@ const actions = [
   },
   {
     text: 'I want to bring',
-    name: 'want_to_bring',
+    name: 'i_want_to_bring',
     icon: <Text>🛫</Text>,
     position: 2,
   },
@@ -30,9 +29,10 @@ function FloatingAction({ navigation }) {
           case 'bring_me':
             navigation.navigate('BringMeForm');
             break;
-          case 'want_to_bring':
+          case 'i_want_to_bring':
+            navigation.navigate('IWantToBringForm');
+            break;
           default:
-            Alert.alert('Title', `selected button: ${name}`);
             break;
         }
       }}
