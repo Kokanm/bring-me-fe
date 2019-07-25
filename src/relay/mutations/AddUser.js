@@ -24,8 +24,13 @@ export default function addUser(newUserData: NewUserInput) {
     mutation,
     variables,
     onCompleted: () => {
+      // eslint-disable-next-line no-console
       console.log('Response received from server.');
     },
-    onError: err => console.error(err),
+
+    onError: err => {
+      // eslint-disable-next-line no-console
+      console.error(err);
+    },
   });
 }
