@@ -2,7 +2,7 @@
 
 import { graphql, commitMutation } from 'react-relay';
 import environment from '../environment';
-import { NewUserInput } from './__generated__/AddUserMutation.graphql';
+import type { NewUserInput } from './__generated__/AddUserMutation.graphql';
 
 const mutation = graphql`
   mutation AddUserMutation($newUserData: NewUserInput!) {
@@ -13,7 +13,7 @@ const mutation = graphql`
   }
 `;
 
-export const addUser = (newUserData: NewUserInput) => {
+export default function addUser(newUserData: NewUserInput) {
   const variables = {
     newUserData: {
       ...newUserData,
@@ -23,9 +23,9 @@ export const addUser = (newUserData: NewUserInput) => {
   commitMutation(environment, {
     mutation,
     variables,
-    onCompleted: (response, errors) => {
+    onCompleted: () => {
       console.log('Response received from server.');
     },
     onError: err => console.error(err),
   });
-};
+}

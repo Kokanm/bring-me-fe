@@ -3,6 +3,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { FloatingAction as RNFloatingActions } from 'react-native-floating-action';
 import { Text } from 'native-base';
+import { withNavigation } from 'react-navigation';
 
 const actions = [
   {
@@ -13,20 +14,30 @@ const actions = [
   },
   {
     text: 'I want to bring',
-    name: 'i_want_to_bring',
+    name: 'want_to_bring',
     icon: <Text>🛫</Text>,
     position: 2,
   },
 ];
 
-export default function FloatingAction() {
+function FloatingAction({ navigation }) {
   return (
     <RNFloatingActions
       distanceToEdge={30}
       actions={actions}
       onPressItem={name => {
-        Alert.alert('Title', `selected button: ${name}`);
+        switch (name) {
+          case 'bring_me':
+            navigation.navigate('BringMeForm');
+            break;
+          case 'want_to_bring':
+          default:
+            Alert.alert('Title', `selected button: ${name}`);
+            break;
+        }
       }}
     />
   );
 }
+
+export default withNavigation(FloatingAction);
