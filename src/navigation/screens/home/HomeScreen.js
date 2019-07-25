@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { Button, Text, Icon } from 'native-base';
 import styled from 'styled-components/native';
@@ -47,6 +49,9 @@ export default function HomeScreen() {
           users {
             id
             firstName
+          }
+          deliveries {
+            item
           }
         }
       `}
