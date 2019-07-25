@@ -1,21 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { View, Form, Item, Input, Textarea, DatePicker } from 'native-base';
+import { addDelivery } from '../../../relay/mutations/AddDelivery';
+import { withNavigation } from 'react-navigation';
 
 const AddOrderButton = styled.Button`
   align-self: center;
 `;
 
-export default function BringMeForm() {
+const saveDeliveryData = (delivery, onSucess) => {
+  addDelivery({
+    ...delivery,
+    type: 'Request',
+  }).then(() => onSucess());
+};
+
+function BringMeForm({ navigation }) {
+  const [form, setFromValues] = useState({
+    locationFrom: '',
+    locationTo: '',
+    deliverBy: '',
+    item: '',
+    description: '',
+  });
+
   return (
     <View>
       <View>
         <Form>
           <Item>
-            <Input placeholder="From" />
+            <Input
+              onChangeText={value => setFromValues({ ...form, locationFrom: value })}
+              placeholder="From"
+            />
           </Item>
           <Item>
-            <Input placeholder="To" />
+            <Input
+              onChangeText={value => setFromValues({ ...form, locationTo: value })}
+              placeholder="To"
+            />
           </Item>
           <Item>
             <DatePicker
@@ -26,19 +49,27 @@ export default function BringMeForm() {
               androidMode="default"
               placeHolderText="When"
               placeHolderTextStyle={{ color: '#5e5e5e' }}
-              onDateChange={() => ({})}
+              onDateChange={value => setFromValues({ ...form, deliverBy: value.getTime() })}
               disabled={false}
             />
           </Item>
           <Item>
-            <Textarea placeholder="What" />
+            <Textarea
+              onChangeText={value => setFromValues({ ...form, item: value })}
+              placeholder="What"
+            />
           </Item>
           <Item last>
-            <Textarea placeholder="Description" />
+            <Textarea
+              onChangeText={value => setFromValues({ ...form, description: value })}
+              placeholder="Description"
+            />
           </Item>
         </Form>
       </View>
-      <AddOrderButton title="Add order" />
+      <AddOrderButton onPress={() => saveDeliveryData(form, () => navigation.navigate('Home'))} title="Add order" />
     </View>
   );
 }
+
+export default withNavigation(BringMeForm);

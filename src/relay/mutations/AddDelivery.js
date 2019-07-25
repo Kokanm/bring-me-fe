@@ -19,18 +19,18 @@ const mutation = graphql`
 `;
 
 export const addDelivery = (newDeliveryData: NewDeliveryInput) => {
-  const variables = {
-    newUserData: {
-      ...newDeliveryData,
-    },
-  };
+  return new Promise(function(resolve, reject) {
+    const variables = {
+      newDeliveryData: {
+        ...newDeliveryData,
+      },
+    };
 
-  commitMutation(environment, {
-    mutation,
-    variables,
-    onCompleted: () => {
-      console.log('Response received from server.');
-    },
-    onError: err => console.error(err),
+    commitMutation(environment, {
+      mutation,
+      variables,
+      onCompleted: () => resolve(),
+      onError: () => reject(),
+    });
   });
 };
