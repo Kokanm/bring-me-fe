@@ -7,7 +7,6 @@ import { Text } from 'react-native';
 import environment from '../../../relay/environment';
 import type { HomeScreenQueryResponse } from './__generated__/HomeScreenQuery.graphql';
 // eslint-disable-next-line import/no-unresolved
-import type { RootQueryResponse } from './__generated__/RootQuery.graphql';
 import FloatingActions from './components/FloatingActions';
 import DeliveriesList from './components/DeliveriesList';
 

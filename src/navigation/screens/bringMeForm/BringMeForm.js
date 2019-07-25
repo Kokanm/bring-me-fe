@@ -4,7 +4,7 @@ import { View, Form, Item, Input, Textarea, DatePicker } from 'native-base';
 import { addDelivery } from '../../../relay/mutations/AddDelivery';
 import { withNavigation } from 'react-navigation';
 
-const AddOrderButton = styled.Button`
+const AddDeliveryButton = styled.Button`
   align-self: center;
 `;
 
@@ -67,7 +67,7 @@ function BringMeForm({ navigation }) {
           </Item>
         </Form>
       </View>
-      <AddOrderButton onPress={() => saveDeliveryData(form, () => navigation.navigate('Home'))} title="Add order" />
+      <AddDeliveryButton onPress={() => saveDeliveryData(form, () => navigation.navigate('Home'))} title="Add order" />
     </View>
   );
 }

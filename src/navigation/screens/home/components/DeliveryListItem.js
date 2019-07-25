@@ -30,7 +30,13 @@ type Props = {
 
 function DeliveryListItemTemplate({ navigation, delivery }: Props) {
   return (
-    <Root onPress={() => navigation.navigate('OrderDetails')}>
+    <Root
+      onPress={() => {
+        navigation.navigate('DeliveryDetails', {
+          delivery,
+        });
+      }}
+    >
       <CountriesContainer>
         <Text>
           🛫:
