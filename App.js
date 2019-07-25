@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
