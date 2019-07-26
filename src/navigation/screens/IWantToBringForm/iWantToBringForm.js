@@ -55,9 +55,6 @@ function IWantToBringForm({ navigation }: NavigationScreenProp<{}>) {
               disabled={false}
             />
           </Item>
-          <Item>
-            <Input keyboardType="number-pad" placeholder="Free space in the luggage (kg)" />
-          </Item>
         </Form>
       </View>
       <AddOrderButton

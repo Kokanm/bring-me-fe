@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { View, Form, Item, Input, Textarea, DatePicker } from 'native-base';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
+import { sanitizeUrl } from '@braintree/sanitize-url';
 import { addDelivery } from '../../../relay/mutations/AddDelivery';
 import type { DeliveryListItem_delivery as Delivery } from '../home/components/__generated__/DeliveryListItem_delivery.graphql';
 
@@ -24,6 +25,7 @@ function BringMeForm({ navigation }: NavigationScreenProp<{}>) {
     locationTo: '',
     deliverBy: '',
     item: '',
+    imageURL: '',
     description: '',
   });
 
@@ -60,6 +62,12 @@ function BringMeForm({ navigation }: NavigationScreenProp<{}>) {
             <Textarea
               onChangeText={value => setFromValues({ ...form, item: value })}
               placeholder="What"
+            />
+          </Item>
+          <Item>
+            <Input
+              onChangeText={value => setFromValues({ ...form, imageURL: sanitizeUrl(value) })}
+              placeholder="Image Url"
             />
           </Item>
           <Item last>
