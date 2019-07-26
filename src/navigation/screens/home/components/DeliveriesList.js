@@ -41,7 +41,7 @@ function DeliveryList({ navigation, deliveries, relay }: Props) {
   return (
     <FlatList
       style={{ flex: 1 }}
-      contentContainerStyle={{ flex: 1 }}
+      contentContainerStyle={{ flexGrow: 1 }}
       data={data}
       renderItem={itemData => <DeliveryListItem delivery={itemData.item} />}
       ItemSeparatorComponent={() => <Separator />}
