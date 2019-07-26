@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { View, Form, Item, Input, DatePicker } from 'native-base';
+import { withNavigation } from 'react-navigation';
+import { addDelivery } from '../../../relay/mutations/AddDelivery';
 
 const AddOrderButton = styled.Button`
   align-self: center;
 `;
 
-export default function IWantToBringForm() {
+const saveDeliveryData = (delivery, onSuccess) => {
+  addDelivery({
+    ...delivery,
+    type: 'Offer',
+  }).then(() => onSuccess());
+};
+
+function IWantToBringForm({ navigation }) {
+  const [form, setFromValues] = useState({
+    locationFrom: '',
+    locationTo: '',
+    deliverBy: '',
+    item: '',
+    description: '',
+  });
   return (
     <View>
       <View>
         <Form>
           <Item>
-            <Input placeholder="From" />
+            <Input
+              onChangeText={value => setFromValues({ ...form, locationFrom: value })}
+              placeholder="From"
+            />
           </Item>
           <Item>
-            <Input placeholder="To" />
+            <Input
+              onChangeText={value => setFromValues({ ...form, locationTo: value })}
+              placeholder="To"
+            />
           </Item>
           <Item>
             <DatePicker
@@ -26,7 +48,7 @@ export default function IWantToBringForm() {
               androidMode="default"
               placeHolderText="When"
               placeHolderTextStyle={{ color: '#5e5e5e' }}
-              onDateChange={() => ({})}
+              onDateChange={value => setFromValues({ ...form, deliverBy: value.getTime() })}
               disabled={false}
             />
           </Item>
@@ -35,7 +57,12 @@ export default function IWantToBringForm() {
           </Item>
         </Form>
       </View>
-      <AddOrderButton title="Add suggestion" />
+      <AddOrderButton
+        onPress={() => saveDeliveryData(form, () => navigation.navigate('Home'))}
+        title="Add suggestion"
+      />
     </View>
   );
 }
+
+export default withNavigation(IWantToBringForm);
