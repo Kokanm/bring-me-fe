@@ -57,10 +57,12 @@ function DeliveryListItemTemplate({ navigation, delivery, type }: Props) {
           📅:
           {getDatefromTimestamp(delivery.deliverBy)}
         </Text>
-        <Text>
-          📦:
-          {delivery.item}
-        </Text>
+        {delivery.item ? (
+          <Text>
+            📦:
+            {delivery.item}
+          </Text>
+        ) : null}
       </CountriesContainer>
     </Root>
   );
