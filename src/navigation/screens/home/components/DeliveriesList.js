@@ -1,13 +1,18 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createRefetchContainer } from 'react-relay';
 import styled from 'styled-components/native';
 import { Text } from 'native-base';
+import { withNavigation } from 'react-navigation';
 import DeliveryListItem from './DeliveryListItem';
 import type { DeliveriesList_deliveries as Deliveries } from './__generated__/DeliveriesList_deliveries.graphql';
 
 type Props = {
   deliveries: Deliveries,
+  navigation: any,
+  relay: {
+    refetch(): void,
+  },
 };
 
 const EmptyList = styled.View`
@@ -22,13 +27,16 @@ const Separator = styled.View`
   background-color: gray;
 `;
 
-function DeliveryList(props: Props) {
-  const { deliveries } = props;
+function DeliveryList({ navigation, deliveries, relay }: Props) {
   if (!deliveries) {
     return null;
   }
 
   const data = deliveries?.deliveries || [];
+
+  navigation.addListener('didFocus', () => {
+    relay.refetch();
+  });
 
   return (
     <FlatList
@@ -47,12 +55,22 @@ function DeliveryList(props: Props) {
   );
 }
 
-export default createFragmentContainer(DeliveryList, {
-  deliveries: graphql`
-    fragment DeliveriesList_deliveries on Query {
+export default createRefetchContainer(
+  withNavigation(DeliveryList),
+  {
+    deliveries: graphql`
+      fragment DeliveriesList_deliveries on Query {
+        deliveries {
+          ...DeliveryListItem_delivery
+        }
+      }
+    `,
+  },
+  graphql`
+    query DeliveriesListRefetchQuery {
       deliveries {
         ...DeliveryListItem_delivery
       }
     }
   `,
-});
+);

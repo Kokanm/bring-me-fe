@@ -2,6 +2,5 @@
 
 import { DateTime } from 'luxon';
 
-export const getDatefromTimestamp = (timestamp: number): string => {
-  return DateTime.fromMillis(Number(timestamp)).toFormat('dd-LLL-yyyy');
-};
+export const getDatefromTimestamp = (timestamp: number): string =>
+  DateTime.fromMillis(Number(timestamp)).toFormat('dd-LLL-yyyy');
