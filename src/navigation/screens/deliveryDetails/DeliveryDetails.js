@@ -24,7 +24,9 @@ function OrderDetails({ navigation }) {
   return (
     <Root>
       <Text>{`${delivery.item}`}</Text>
-      <ItemImage source={{ uri: delivery.imageURL }} resizeMode="contain" />
+      {delivery.imageURL ? (
+        <ItemImage source={{ uri: delivery.imageURL }} resizeMode="contain" />
+      ) : null}
       <Text>{`From: ${delivery.locationFrom}`}</Text>
       <Text>{`To: ${delivery.locationTo}`}</Text>
       <AcceptDeliveryButton title="Accept delivery" />
