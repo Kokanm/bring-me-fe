@@ -2,7 +2,7 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
 function fetchQuery(operation, variables) {
   // TODO change to proper one
-  return fetch('http://399453f8.ngrok.io/graphql', {
+  return fetch('http://17a4ea50.ngrok.io/graphql', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
