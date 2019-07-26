@@ -1,21 +1,25 @@
+// @flow
+
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { View, Form, Item, Input, DatePicker } from 'native-base';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationScreenProp } from 'react-navigation';
 import { addDelivery } from '../../../relay/mutations/AddDelivery';
+import type { DeliveryListItem_delivery as Delivery } from '../home/components/__generated__/DeliveryListItem_delivery.graphql';
+
 
 const AddOrderButton = styled.Button`
   align-self: center;
 `;
 
-const saveDeliveryData = (delivery, onSuccess) => {
+const saveDeliveryData = (delivery: Delivery, onSuccess: () => void): void => {
   addDelivery({
     ...delivery,
     type: 'Offer',
   }).then(() => onSuccess());
 };
 
-function IWantToBringForm({ navigation }) {
+function IWantToBringForm({ navigation }: NavigationScreenProp<{}>) {
   const [form, setFromValues] = useState({
     locationFrom: '',
     locationTo: '',
