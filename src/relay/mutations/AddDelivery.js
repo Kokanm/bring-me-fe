@@ -19,7 +19,7 @@ const mutation = graphql`
 `;
 
 export const addDelivery = (newDeliveryData: NewDeliveryInput) => {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     const variables = {
       newDeliveryData: {
         ...newDeliveryData,

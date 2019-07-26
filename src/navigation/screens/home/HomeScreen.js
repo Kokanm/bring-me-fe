@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { graphql, QueryRenderer } from 'react-relay';
-import { Text, Tabs, Tab, TabHeading } from 'native-base';
+import { Text, Tabs, Tab } from 'native-base';
 import environment from '../../../relay/environment';
 import type { HomeScreenQueryResponse } from './__generated__/HomeScreenQuery.graphql';
 // eslint-disable-next-line import/no-unresolved
