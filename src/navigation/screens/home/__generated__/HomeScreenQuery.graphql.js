@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9c51895b0f2a374789002db7ab7f7175
+ * @relayHash 274157a4899549253b9a140f167a8861
  */
 
 /* eslint-disable */
@@ -40,6 +40,7 @@ fragment DeliveryListItem_delivery on Delivery {
   locationFrom
   locationTo
   deliverBy
+  type
 }
 */
 
@@ -114,6 +115,13 @@ const node/*: ConcreteRequest*/ = {
             "name": "deliverBy",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "type",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -123,7 +131,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "HomeScreenQuery",
     "id": null,
-    "text": "query HomeScreenQuery {\n  ...DeliveriesList_deliveries\n}\n\nfragment DeliveriesList_deliveries on Query {\n  deliveries {\n    ...DeliveryListItem_delivery\n    id\n  }\n}\n\nfragment DeliveryListItem_delivery on Delivery {\n  id\n  item\n  imageURL\n  locationFrom\n  locationTo\n  deliverBy\n}\n",
+    "text": "query HomeScreenQuery {\n  ...DeliveriesList_deliveries\n}\n\nfragment DeliveriesList_deliveries on Query {\n  deliveries {\n    ...DeliveryListItem_delivery\n    id\n  }\n}\n\nfragment DeliveryListItem_delivery on Delivery {\n  id\n  item\n  imageURL\n  locationFrom\n  locationTo\n  deliverBy\n  type\n}\n",
     "metadata": {}
   }
 };

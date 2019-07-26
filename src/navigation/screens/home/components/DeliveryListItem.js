@@ -72,6 +72,7 @@ export default createFragmentContainer(withNavigation(DeliveryListItem), {
       locationFrom
       locationTo
       deliverBy
+      type
     }
   `,
 });

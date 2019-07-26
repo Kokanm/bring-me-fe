@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 87dea03a1ba496e1ec66e3ef8ce9c544
+ * @relayHash 105f81d25e569909bbdf66a073d39752
  */
 
 /* eslint-disable */
@@ -38,6 +38,7 @@ fragment DeliveryListItem_delivery on Delivery {
   locationFrom
   locationTo
   deliverBy
+  type
 }
 */
 
@@ -123,6 +124,13 @@ const node/*: ConcreteRequest*/ = {
             "name": "deliverBy",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "type",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -132,7 +140,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "DeliveriesListRefetchQuery",
     "id": null,
-    "text": "query DeliveriesListRefetchQuery {\n  deliveries {\n    ...DeliveryListItem_delivery\n    id\n  }\n}\n\nfragment DeliveryListItem_delivery on Delivery {\n  id\n  item\n  imageURL\n  locationFrom\n  locationTo\n  deliverBy\n}\n",
+    "text": "query DeliveriesListRefetchQuery {\n  deliveries {\n    ...DeliveryListItem_delivery\n    id\n  }\n}\n\nfragment DeliveryListItem_delivery on Delivery {\n  id\n  item\n  imageURL\n  locationFrom\n  locationTo\n  deliverBy\n  type\n}\n",
     "metadata": {}
   }
 };
