@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { graphql, createRefetchContainer } from 'react-relay';
 import styled from 'styled-components/native';
-import { Text } from 'native-base';
+import { Tab, Tabs, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import DeliveryListItem from './DeliveryListItem';
 import type { DeliveriesList_deliveries as Deliveries } from './__generated__/DeliveriesList_deliveries.graphql';
@@ -27,6 +27,23 @@ const Separator = styled.View`
   background-color: gray;
 `;
 
+const TabContent = ({ data, type }) => {
+  return (
+    <FlatList
+      style={{ flex: 1 }}
+      contentContainerStyle={{ flexGrow: 1 }}
+      data={data}
+      renderItem={itemData => <DeliveryListItem delivery={itemData.item} type={type} />}
+      ListEmptyComponent={() => (
+        <EmptyList>
+          <Text>Nothing to show 😞</Text>
+        </EmptyList>
+      )}
+      keyExtractor={(item, index) => index.toString()}
+    />
+  );
+};
+
 function DeliveryList({ navigation, deliveries, relay }: Props) {
   if (!deliveries) {
     return null;
@@ -39,19 +56,14 @@ function DeliveryList({ navigation, deliveries, relay }: Props) {
   });
 
   return (
-    <FlatList
-      style={{ flex: 1 }}
-      contentContainerStyle={{ flexGrow: 1 }}
-      data={data}
-      renderItem={itemData => <DeliveryListItem delivery={itemData.item} />}
-      ItemSeparatorComponent={() => <Separator />}
-      ListEmptyComponent={() => (
-        <EmptyList>
-          <Text>Nothing to show 😞</Text>
-        </EmptyList>
-      )}
-      keyExtractor={(item, index) => index.toString()}
-    />
+    <Tabs>
+      <Tab heading="Orders">
+        <TabContent data={data} type="Request" />
+      </Tab>
+      <Tab heading="Suggestions">
+        <TabContent data={data} type="Offer" />
+      </Tab>
+    </Tabs>
   );
 }
 

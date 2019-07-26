@@ -26,9 +26,14 @@ const CountriesContainer = styled.View`
 type Props = {
   navigation: any,
   delivery: Delivery,
+  type: String,
 };
 
-function DeliveryListItemTemplate({ navigation, delivery }: Props) {
+function DeliveryListItemTemplate({ navigation, delivery, type }: Props) {
+  if (type !== delivery.type) {
+    return null;
+  }
+
   return (
     <Root
       onPress={() => {
